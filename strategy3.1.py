@@ -1,67 +1,83 @@
-from datetime import datetime
+from abc import ABC, abstractmethod
+import random
 
 
-class MensagemDoDia:
-    def imprimir(self):
-        print("Hoje definitivamente eh um dia")
+class Strategy(ABC):
+    @abstractmethod
+    def execute(self) -> str:
+        pass
 
 
-class MensagemDomingo(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh domingo.")
+class Context:
+    strategy: Strategy  # the strategy interface
+
+    def setStrategy(self, strategy: Strategy = None) -> None:
+        if strategy is not None:
+            self.strategy = strategy
+        else:
+            self.strategy = Default()
+
+    def executeStrategy(self) -> str:
+        print(f'Hoje é {self.strategy.execute()}.')
 
 
-class MensagemSegunda(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh segunda.")
+class StrategyDomingo(Strategy):
+    def execute(self) -> str:
+        return "Domingo"
 
 
-class MensagemTerca(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh terca.")
+class StrategySegunda(Strategy):
+    def execute(self) -> str:
+        return "Segunda"
 
 
-class MensagemQuarta(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh quarta.")
+class StrategyTerca(Strategy):
+    def execute(self) -> str:
+        return "Terça"
 
 
-class MensagemQuinta(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh quinta.")
+class StrategyQuarta(Strategy):
+    def execute(self) -> str:
+        return "Quarta"
 
 
-class MensagemSexta(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh sexta.")
+class StrategyQuinta(Strategy):
+    def execute(self) -> str:
+        return "Quinta"
 
 
-class MensagemSabado(MensagemDoDia):
-    def imprimir(self):
-        print("Hoje eh sabado.")
+class StrategySexta(Strategy):
+    def execute(self) -> str:
+        return "Sexta"
 
 
-if __name__ == "__main__":
+class StrategySabado(Strategy):
+    def execute(self) -> str:
+        return "Sábado"
 
-    # get current datetime
-    dt = datetime.now()
-    print('Datetime is:', dt)
 
-    # get day of week as an integer
-    diaSemana = dt.weekday()
-    print('Day of a week is:', diaSemana)
-    mensagem = MensagemDoDia()
+class Default(Strategy):
+    def execute(self) -> str:
+        return "um dia"
 
-    def switch(diaSemana):
-        if diaSemana == 0:
-            MensagemDomingo()
-        if diaSemana == 2:
-            MensagemSegunda()
-        if diaSemana == 3:
-            MensagemTerca()
-        if diaSemana == 4:
-            MensagemQuarta()
-        if diaSemana == 5:
-            MensagemQuinta()
-        if diaSemana == 6:
-            MensagemSexta()
+
+def diaAleatorio(self):
+    dias = ['domingo', 'segunda', 'terça',
+            'quarta', 'quinta', 'sexta', 'sabado']
+    aleatorio = random.choice(dias)
+    types = {
+        "domingo": StrategyDomingo,
+        "segunda": StrategySegunda,
+        "terça": StrategyTerca,
+        "quarta": StrategyQuarta,
+        "quinta": StrategyQuinta,
+        "sexta": StrategySexta,
+        "sabado": StrategySabado
+    }
+    return types[aleatorio]
+
+
+    # Example application
+app = Context()
+app.setStrategy(diaAleatorio())
+app.executeStrategy()
