@@ -61,18 +61,18 @@ class Default(Strategy):
         return "um dia"
 
 
-def diaAleatorio(self):
+def diaAleatorio():
     dias = ['domingo', 'segunda', 'terça',
             'quarta', 'quinta', 'sexta', 'sabado']
     aleatorio = random.choice(dias)
     types = {
-        "domingo": StrategyDomingo,
-        "segunda": StrategySegunda,
-        "terça": StrategyTerca,
-        "quarta": StrategyQuarta,
-        "quinta": StrategyQuinta,
-        "sexta": StrategySexta,
-        "sabado": StrategySabado
+        "domingo": StrategyDomingo(),
+        "segunda": StrategySegunda(),
+        "terça": StrategyTerca(),
+        "quarta": StrategyQuarta(),
+        "quinta": StrategyQuinta(),
+        "sexta": StrategySexta(),
+        "sabado": StrategySabado()
     }
     return types[aleatorio]
 
