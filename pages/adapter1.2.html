@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>adapter1.1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>adapter1.2</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14597,7 +14597,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Adapter-,-exerc%C3%ADcio-1.1">Adapter , exerc&#237;cio 1.1<a class="anchor-link" href="#Adapter-,-exerc%C3%ADcio-1.1">&#182;</a></h1><p>A classe java.util.Map da API de coleções de Java permite que sejam armazenados pares de objetos (chave e valor) em uma de suas implementações (as mais conhecidas são HashMap e TreeMap). No entanto, estas classes não possuem um construtor que receba como parâmetro uma matriz de duas linhas e que monte o mapa usando a primeira linha como chave e a segunda como coluna. Crie um adaptador (dica: use Adapter de classe) que tenha este construtor.</p>
+<h1 id="Adapter,-exerc%C3%ADcio-1.2">Adapter, exerc&#237;cio 1.2<a class="anchor-link" href="#Adapter,-exerc%C3%ADcio-1.2">&#182;</a></h1><p>Abaixo estão os códigos fonte de um cliente, uma interface para um somador que ele espera utilizar e uma classe concreta que implementa uma soma, mas não da maneira esperada pelo cliente. Como você pode ver abaixo, o cliente espera usar uma classe que soma inteiros em um vetor, mas a classe pronta soma inteiros em uma lista. Crie um adaptador (dica: use Adapter de objeto) para resolver esta situação.</p>
 
 </div>
 </div>
@@ -14609,8 +14609,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Solu%C3%A7%C3%A3o:">Solu&#231;&#227;o:<a class="anchor-link" href="#Solu%C3%A7%C3%A3o:">&#182;</a></h2><p>Para resolver este exercício, criamos uma classe que seu construtor recebe uma matriz de 2 linhas, e retorna um dicionário ou objeto com a relação chave e valor, que em cada coluna a primeira linha é a chave e a segunda linha será o valor.</p>
-<p>Essa classe será utilizada como <code>Adapter</code> para adaptar a interface de um dado que vem numa estrutura não convencional para o problema do cliente, e pra isso temos que inserir uma entidade intermediária para podermos usarmos esse dado no nosso programa</p>
+<h2 id="Solu%C3%A7%C3%A3o:">Solu&#231;&#227;o:<a class="anchor-link" href="#Solu%C3%A7%C3%A3o:">&#182;</a></h2><p>Primeiro transcrevemos o código fonte dado para a linguagem que estamos utilizando</p>
 
 </div>
 </div>
@@ -14623,16 +14622,33 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MatrixToMapAdapter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SomadorEsperado</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">somaVetor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vetor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Cliente</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">somador</span><span class="p">:</span> <span class="n">SomadorEsperado</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">somador</span> <span class="o">=</span> <span class="n">somador</span>
+
+    <span class="k">def</span> <span class="nf">executar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">vetor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+        <span class="n">soma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">somador</span><span class="o">.</span><span class="n">somaVetor</span><span class="p">(</span><span class="n">vetor</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resultado: </span><span class="si">{</span><span class="n">soma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14647,7 +14663,79 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>E abaixo um exemplo do cliente utilizando o Adapter em uma dada matriz, retornando pro cliente um dicionário com a relação chave e valor.</p>
+<p>No caso da nossa linguagem, a implementação de lista e vetor é a mesma, então teremos que improvisar uma forma de caminhar pela &quot;lista&quot; que fique claro a intenção e que possa ser replicada em uma linguagem que tenha essa diferenciação.</p>
+<p>No nosso caso, utilizamos uma espécie de <code>forEach</code> que entra na entidade lista e passa por cada posição, sem se importar com índices e seu tipo.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SomadorExistente</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">somaLista</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lista</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+            <span class="n">resultado</span> <span class="o">+=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">resultado</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Agora para resolver o nosso problema, criamos uma classe <code>Adapter</code> que será responsável por receber como input a forma real do dado, que nesse caso é um &quot;vetor&quot;, e terá como saída a forma que conseguimos trabalhar com o dado, que nesse caso será uma lista</p>
+<p>Pra isso, nós instanciamos uma lista, e enquanto visitamos os itens do vetor, adicionamos na lista e por fim retornamos o método de soma do somador existente com a lista como parâmetro.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Adapter</span><span class="p">(</span><span class="n">SomadorEsperado</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">somador</span><span class="p">:</span> <span class="n">SomadorExistente</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">somador</span> <span class="o">=</span> <span class="n">somador</span>
+
+    <span class="k">def</span> <span class="nf">somaVetor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vetor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vetor</span><span class="p">:</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">somador</span><span class="o">.</span><span class="n">somaLista</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Abaixo temos o código do cliente utilizando o Somador Existente e o Adaptador</p>
 
 </div>
 </div>
@@ -14660,13 +14748,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;Deixa eu&#39;</span><span class="p">,</span> <span class="s1">&#39;pro meu corpo ficar&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;dançar&#39;</span><span class="p">,</span> <span class="s1">&#39;odara&#39;</span><span class="p">],</span>
-<span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">MatrixToMapAdapter</span><span class="p">(</span><span class="n">matrix</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Cliente</span><span class="p">(</span><span class="n">Adapter</span><span class="p">(</span><span class="n">SomadorExistente</span><span class="p">()))</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14686,8 +14768,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[[&#39;Deixa eu&#39;, &#39;pro meu corpo ficar&#39;], [&#39;dançar&#39;, &#39;odara&#39;]]
-{&#39;Deixa eu&#39;: &#39;dançar&#39;, &#39;pro meu corpo ficar&#39;: &#39;odara&#39;}
+<pre>Resultado: 55
 </pre>
 </div>
 </div>

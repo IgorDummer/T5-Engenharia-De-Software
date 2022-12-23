@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>adapter1.1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>decorator4.1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14597,7 +14597,24 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Adapter-,-exerc%C3%ADcio-1.1">Adapter , exerc&#237;cio 1.1<a class="anchor-link" href="#Adapter-,-exerc%C3%ADcio-1.1">&#182;</a></h1><p>A classe java.util.Map da API de coleções de Java permite que sejam armazenados pares de objetos (chave e valor) em uma de suas implementações (as mais conhecidas são HashMap e TreeMap). No entanto, estas classes não possuem um construtor que receba como parâmetro uma matriz de duas linhas e que monte o mapa usando a primeira linha como chave e a segunda como coluna. Crie um adaptador (dica: use Adapter de classe) que tenha este construtor.</p>
+<h1 id="Decorator,-exerc%C3%ADcio-4.1">Decorator, exerc&#237;cio 4.1<a class="anchor-link" href="#Decorator,-exerc%C3%ADcio-4.1">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Implemente o interceptador cronômetro apresentado no slide 53.</p>
+<p>Implemente também outros dois interceptadores:</p>
+<ol>
+<li>um que imprima uma mensagem de log antes de executar a tarefa (“&lt;data/hora&gt;: mensagem”)</li>
+<li>um que verifique se o minuto atual é um número par e, se for, interrompe a execução com uma mensagem de justificativa (“Execução interrompida em minuto par: <hora atual>”).</li>
+</ol>
+<p>Coloque os interceptadores na ordem log -&gt; verificador-de-minuto -&gt; cronômetro -&gt; componente-concreto.</p>
 
 </div>
 </div>
@@ -14609,8 +14626,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Solu%C3%A7%C3%A3o:">Solu&#231;&#227;o:<a class="anchor-link" href="#Solu%C3%A7%C3%A3o:">&#182;</a></h2><p>Para resolver este exercício, criamos uma classe que seu construtor recebe uma matriz de 2 linhas, e retorna um dicionário ou objeto com a relação chave e valor, que em cada coluna a primeira linha é a chave e a segunda linha será o valor.</p>
-<p>Essa classe será utilizada como <code>Adapter</code> para adaptar a interface de um dado que vem numa estrutura não convencional para o problema do cliente, e pra isso temos que inserir uma entidade intermediária para podermos usarmos esse dado no nosso programa</p>
+<p>Decorators adicionam funcionalidades a objetos de forma dinâmica, permitindo assim a expansão do objeto de maneira mais flexível.
+Permite combinar atributos a objetos sem aumentar drasticamente a quantidade de classes implementadas, que é o que o uso de Herança causaria.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>A interface ComponenteInterface é comum tanto para os envoltórios como para os objetos envolvidos:</p>
 
 </div>
 </div>
@@ -14623,16 +14652,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MatrixToMapAdapter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">keys</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ComponenteInterface</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">executarTarefa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 
      </div>
@@ -14647,7 +14669,139 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>E abaixo um exemplo do cliente utilizando o Adapter em uma dada matriz, retornando pro cliente um dicionário com a relação chave e valor.</p>
+<p>O Componente Concreto é uma classe de objetos sendo envolvidos. Ela define o comportamento básico, que pode ser alterado por decoradores.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">ComponenteConcreto</span><span class="p">(</span><span class="n">ComponenteInterface</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">executarTarefa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>O Componente Concreto aqui é o cronômetro e é uma classe do objeto sendo envolvido. Ela define o comportamento básico, que pode ser alterado por decoradores.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Cronometro</span><span class="p">(</span><span class="n">ComponenteInterface</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">componente</span><span class="p">:</span> <span class="n">ComponenteInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">componente</span> <span class="o">=</span> <span class="n">componente</span>
+
+  <span class="k">def</span> <span class="nf">executarTarefa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">antes</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">componente</span><span class="o">.</span><span class="n">executarTarefa</span><span class="p">()</span>
+    <span class="n">depois</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">depois</span> <span class="o">-</span> <span class="n">antes</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Os Decoradores Concretos definem os comportamentos adicionais que podem ser adicionados aos componentes dinamicamente. Os decoradores concretos sobrescrevem métodos do decorador base (no nosso caso, executarTarefa) e executam seus comportamentos tanto antes como depois de chamarem o método pai:</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span> <span class="nc">Log</span><span class="p">(</span><span class="n">ComponenteInterface</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">componente</span><span class="p">:</span> <span class="n">ComponenteInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">componente</span> <span class="o">=</span> <span class="n">componente</span>
+
+  <span class="k">def</span> <span class="nf">executarTarefa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">currentDateAndTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%D %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">currentDateAndTime</span><span class="si">}</span><span class="s2">: mensagem&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">componente</span><span class="o">.</span><span class="n">executarTarefa</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">VerificadorMinutos</span><span class="p">(</span><span class="n">ComponenteInterface</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">componente</span><span class="p">:</span> <span class="n">ComponenteInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">componente</span> <span class="o">=</span> <span class="n">componente</span>
+
+  <span class="k">def</span> <span class="nf">executarTarefa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">currentDateAndTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">currentDateAndTime</span><span class="o">.</span><span class="n">minute</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">time</span> <span class="o">=</span> <span class="n">currentDateAndTime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execução interrompida em minuto par </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">componente</span><span class="o">.</span><span class="n">executarTarefa</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>O Cliente pode envolver componentes em múltiplas camadas de decorators, desde que trabalhe com todos os objetos através da interface do componente.</p>
 
 </div>
 </div>
@@ -14660,13 +14814,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;Deixa eu&#39;</span><span class="p">,</span> <span class="s1">&#39;pro meu corpo ficar&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;dançar&#39;</span><span class="p">,</span> <span class="s1">&#39;odara&#39;</span><span class="p">],</span>
-<span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">componenteConcreto</span> <span class="o">=</span> <span class="n">ComponenteConcreto</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">MatrixToMapAdapter</span><span class="p">(</span><span class="n">matrix</span><span class="p">))</span>
+<span class="n">cronometro</span> <span class="o">=</span> <span class="n">Cronometro</span><span class="p">(</span><span class="n">componenteConcreto</span><span class="p">)</span>
+
+<span class="n">verificadorMinutos</span> <span class="o">=</span> <span class="n">VerificadorMinutos</span><span class="p">(</span><span class="n">cronometro</span><span class="p">)</span>
+
+<span class="n">log</span> <span class="o">=</span>  <span class="n">Log</span><span class="p">(</span><span class="n">verificadorMinutos</span><span class="p">)</span>
+
+<span class="n">log</span><span class="o">.</span><span class="n">executarTarefa</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14686,8 +14842,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[[&#39;Deixa eu&#39;, &#39;pro meu corpo ficar&#39;], [&#39;dançar&#39;, &#39;odara&#39;]]
-{&#39;Deixa eu&#39;: &#39;dançar&#39;, &#39;pro meu corpo ficar&#39;: &#39;odara&#39;}
+<pre>12/15/22 14:51:00: mensagem
+2.0021090507507324 ms
 </pre>
 </div>
 </div>
